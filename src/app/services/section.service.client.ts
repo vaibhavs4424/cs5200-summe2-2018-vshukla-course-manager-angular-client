@@ -1,9 +1,9 @@
 export class SectionServiceClient {
 
-  SECTION_URL = 'http://localhost:3000/api/course/COURSEID/section';
+  SECTION_URL = 'https://young-garden-67805.herokuapp.com/api/course/COURSEID/section';
 
   findSectionsForStudent() {
-    const url = 'http://localhost:3000/api/student/section';
+    const url = 'https://young-garden-67805.herokuapp.com/api/student/section';
 
     return fetch(url, {
       credentials: 'include'
@@ -12,7 +12,7 @@ export class SectionServiceClient {
   }
 
   enrollStudentInSection(sectionId) {
-    const url = 'http://localhost:3000/api/section/' + sectionId + '/enrollment';
+    const url = 'https://young-garden-67805.herokuapp.com/api/section/' + sectionId + '/enrollment';
 
     return fetch(url, {
       method: 'POST',
@@ -22,7 +22,7 @@ export class SectionServiceClient {
 
 
   unenrollStudentInSection(sectionId) {
-    const url = 'http://localhost:3000/api/section/' + sectionId + '/unenrollment';
+    const url = 'https://young-garden-67805.herokuapp.com/api/section/' + sectionId + '/unenrollment';
 
     return fetch(url, {
       method: 'POST',
@@ -31,7 +31,7 @@ export class SectionServiceClient {
   }
 
   deleteSection(sectionId) {
-    const url = 'http://localhost:3000/api/section/' + sectionId;
+    const url = 'https://young-garden-67805.herokuapp.com/api/section/' + sectionId;
 
     return fetch(url, {
       method: 'DELETE',
@@ -40,7 +40,7 @@ export class SectionServiceClient {
   }
 
   editSection(sectionId, name, seats) {
-    const url = 'http://localhost:3000/api/section/' + sectionId;
+    const url = 'https://young-garden-67805.herokuapp.com/api/section/' + sectionId;
     const section = {name, seats};
 
     return fetch(url, {

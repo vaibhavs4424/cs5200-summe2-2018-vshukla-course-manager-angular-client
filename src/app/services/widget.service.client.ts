@@ -1,6 +1,6 @@
 export class WidgetServiceClient {
-  findWidgetsForLesson(topicId) {
-    return fetch('http://localhost:8080/api/topic/' + topicId + '/widget')
+  findAllWidgetsForLesson(topicId) {
+    return fetch('https://arcane-river-53780.herokuapp.com/api/topic/' + 1 + '/widget')
       .then(response => response.json());
   }
 }

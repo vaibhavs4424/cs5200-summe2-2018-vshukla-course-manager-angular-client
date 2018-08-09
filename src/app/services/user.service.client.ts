@@ -2,14 +2,14 @@ export class UserServiceCleint {
 
 
   findUserById(userId) {
-    return fetch('http://localhost:3000/api/user/' + userId, {
+    return fetch('https://young-garden-67805.herokuapp.com/api/user/' + userId, {
       credentials: 'include', // include, same-origin, *omit
     })
       .then(response => response.json());
   }
 
   profile() {
-    return fetch('http://localhost:3000/api/profile', {
+    return fetch('https://young-garden-67805.herokuapp.com/api/profile', {
       credentials: 'include', // include, same-origin, *omit
     })
       .then(response => response.json());
@@ -22,7 +22,7 @@ export class UserServiceCleint {
       admin: admin
     };
 
-    return fetch('http://localhost:3000/api/user', {
+    return fetch('https://young-garden-67805.herokuapp.com/api/user', {
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'POST',
@@ -33,7 +33,7 @@ export class UserServiceCleint {
   }
 
   logout() {
-    return fetch('http://localhost:3000/api/logout', {
+    return fetch('https://young-garden-67805.herokuapp.com/api/logout', {
       method: 'POST',
       credentials: 'include',
     });
@@ -45,14 +45,14 @@ export class UserServiceCleint {
       username: username,
       password: password
     };
-    return fetch('http://localhost:3000/api/login', {
+    return fetch('https://young-garden-67805.herokuapp.com/api/login', {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(credentials),
       headers: {
         'content-type': 'application/json'
       }
-    });
+    }).then(response => response.json());
   }
 
 
@@ -64,7 +64,7 @@ export class UserServiceCleint {
       lastName: lastname,
       email: email
     };
-    return fetch('http://localhost:3000/api/profile', {
+    return fetch('https://young-garden-67805.herokuapp.com/api/profile', {
       method: 'PUT',
       credentials: 'include',
       body: JSON.stringify(user),
