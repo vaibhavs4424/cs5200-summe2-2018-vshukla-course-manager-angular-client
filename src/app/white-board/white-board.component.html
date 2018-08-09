@@ -1,3 +1,23 @@
-<p>
-  white-board works!
-</p>
+<div class="container">
+  <div class="form-group row">
+  <h1>
+    White Board
+  </h1>
+  </div>
+  <div class="form-group row">
+    <button (click)="login()"
+            class="btn btn-primary btn-block">
+      Login
+    </button>
+  </div>
+
+  <div class="form-group row">
+    <button (click)="register()"
+            class="btn btn-primary btn-block">
+      Register
+    </button>
+  </div>
+
+
+  <app-course-enrollment></app-course-enrollment>
+</div>
