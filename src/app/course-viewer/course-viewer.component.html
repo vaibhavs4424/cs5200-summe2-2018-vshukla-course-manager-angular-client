@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <button (click)="home()"
+          class="btn btn-primary btn-success">
+    Home
+  </button>
+  <div class="row">
+    <div class="col-2">
+      <h2>Courses</h2>
+      <ul class="list-group">
+        <li [ngClass]="{'active': course.id == courseId}" *ngFor="let course of courses"
+            class="list-group-item " (click)="loadModules(course.id)">
+          <!--<a routerLink="/course/{{course.id}}">-->
+            {{course.title}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-2">
+      <h2>Modules</h2>
+      <ul class ="list-group">
+        <li [ngClass]="{'active': module.id == moduleId}" *ngFor="let module of modules"
+            class="list-group-item" (click)="loadLessons(courseId,module.id)">
+          <!--<a routerLink="/course/{{courseId}}/module/{{module.id}}">-->
+            {{module.title}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-2">
+      <h2>Lessons</h2>
+      <ul class="list-group">
+        <li  *ngFor="let lesson of lessons" [ngClass]="{'active': lesson.id == lessonId}"
+             class="list-group-item" (click)="loadTopics(courseId,moduleId,lesson.id)">
+          <!--<a class="list-group-item" [ngClass]="{'active': lesson.id == lessonId}" routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lesson.id}}">-->
+            {{lesson.title}}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-2">
+      <h2>Topics</h2>
+      <ul class="list-group">
+        <li  *ngFor="let topic of topics" [ngClass]="{'active': topic.id == topicId}"
+             class="list-group-item" (click)="loadWidgets(courseId,moduleId,lessonId,topic.id)">
+          <!--<a class="list-group-item" [ngClass]="{'active': topic.id == topicId}" routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lessonId}}/topic/{{topic.id}}">-->
+            {{topic.title}}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-3">
+      <h2>Widgets</h2>
+    <div class="row" *ngFor="let widget of widgets">
+      <div [ngSwitch]="widget.widgetType">
+        <div *ngSwitchCase="'Heading'">
+          <div [ngSwitch]="widget.size">
+            <h1 *ngSwitchCase="'1'">{{widget.text}}</h1>
+            <h2 *ngSwitchCase="'2'">{{widget.text}}</h2>
+            <h3 *ngSwitchCase="'3'">{{widget.text}}</h3>
+            <h4 *ngSwitchCase="'4'">{{widget.text}}</h4>
+            <h5 *ngSwitchCase="'5'">{{widget.text}}</h5>
+            <h6 *ngSwitchCase="'6'">{{widget.text}}</h6>
+          </div>
+        </div>
+        <div *ngSwitchCase="'Link'">
+          <a href="{{widget.linkHref}}">{{widget.text}}</a>
+        </div>
+        <div *ngSwitchCase="'List'">
+          <h1>ListWidget</h1>
+          <ul class="list-group">
+            <li class="list-group-item"
+                *ngFor="let item of widget.text.split('\n')">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'Paragraph'">
+          <h1>Paragraph Widget</h1>
+          <p>{{widget.text}}</p>
+        </div>
+        <div *ngSwitchCase="'Image'">
+          <h1>Image Widget</h1>
+          <img className="rounded card-img" src={widget.imageSrc} alt={widget.widgetName} />
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
