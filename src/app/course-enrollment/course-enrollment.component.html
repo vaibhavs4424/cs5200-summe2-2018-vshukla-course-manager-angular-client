@@ -1,0 +1,29 @@
+<h1>Course Enrollment </h1>
+<hr/>
+<h2>Enrolled Courses </h2>
+<div class="row">
+  <div *ngFor="let course of enrolledCourses" class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{course.title}}</h5>
+        <p>Course description, right now contains some garbage value</p>
+        <a routerLink="/enroll/course/{{course.id}}/section"
+           class="btn btn-warning">Un-Enroll</a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<h2>Other Courses</h2>
+<div class="row">
+  <div *ngFor="let course of otherCourses" class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{course.title}}</h5>
+        <p>Course description, right now contains some garbage value</p>
+        <a routerLink="/course/{{course.id}}/section"
+           class="btn btn-warning">Enroll</a>
+      </div>
+    </div>
+  </div>
+</div>
