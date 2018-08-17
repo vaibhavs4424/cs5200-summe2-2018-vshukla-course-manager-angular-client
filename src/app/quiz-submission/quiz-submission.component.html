@@ -2,12 +2,13 @@
   <h2>Submissions</h2>
 
   <ul class="list-group">
-    <li *ngFor="let submission of submissions" class="list-group-item">
-      <p><strong> Submission for Student with id: </strong> {{submission.student}}</p>
-      <p>Submission time: {{submission.submissionTime}}</p>
-
-      <a routerLink="/quiz/{{submission.quiz}}/submission/{{submission._id}}" class="btn btn-success float-right">View Submission</a>
-    </li>
+    <li *ngFor="let superSubmission of superSubmissions" class="list-group-item">
+     <div class="row">
+       <div class="col"><p><strong> Submission for Student: </strong> {{superSubmission.user.username}}</p>
+         <p><strong>Submission Time:</strong> {{superSubmission.submission.submissionTime}}</p>
+       </div>
+      <a routerLink="/quiz/{{superSubmission.submission.quiz}}/submission/{{superSubmission.submission._id}}" class="btn btn-success float-right">View Submission</a>
+     </div> </li>
   </ul>
 
 </div>

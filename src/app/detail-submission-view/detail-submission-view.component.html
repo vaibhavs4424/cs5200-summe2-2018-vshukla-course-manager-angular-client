@@ -1,20 +1,21 @@
-<h2>Submission for the Quiz</h2>
 
-  <button class="btn btn-primary float-right" routerLink="/home">Home </button>
+  <button class="btn btn-primary " routerLink="/home">Home </button>
 
-<p><strong>Quiz id </strong> is: {{quiz.title}}</p>
-<p><strong>Student id </strong> is: {{submission.student}}</p>
-<p><strong>Submission Time</strong>  is: {{submission.submissionTime}}</p>
+  <h2>Submission for the Quiz</h2>
+<p><strong>Student Username: </strong> {{user.username}}</p>
+<p><strong>Submission Time: </strong> {{submission.submissionTime}}</p>
+<p><strong>Quiz Title: </strong> {{quiz.title}}</p>
 
 <ul class="list-group">
   <li *ngFor="let answer of submission.answers" class="list-group-item">
-    <div *ngFor="let question of quiz.questions"> <p *ngIf="answer._id == question._id"><strong>Question </strong> is: {{question.title}}</p></div>
-    <p *ngIf="answer.essayAnswer != null"> <strong>Essay Answer</strong> is:      {{answer.essayAnswer}} </p>
-    <p *ngIf="answer.multipleChoiceAnswer != null"> <strong>MultipleChoiceAnswer</strong> is: {{answer.multipleChoiceAnswer}} </p>
-    <p *ngIf="answer.trueFalseAnswer != null"> <strong>True False Answer</strong> is: {{answer.trueFalseAnswer}} </p>
-    <p *ngIf="answer.fillBlanksAnswers != null"> <strong>Fill Blanks Answer for Variable 1</strong> is: {{answer.fillBlanksAnswers.variable1}}
+    <div *ngFor="let question of quiz.questions"> <p *ngIf="answer._id == question._id"><strong>Question: </strong> {{question.title}}</p> </div>
+    <p *ngIf="answer.essayAnswer != null"> <strong>Essay Answer: </strong>  {{answer.essayAnswer}} </p>
+    <div *ngFor="let question of quiz.questions"> <p *ngIf="answer.multipleChoiceAnswer != null && answer._id == question._id"> <strong>Multiple Choice Answer: </strong> {{question.choices[answer.multipleChoiceAnswer].text}} </p></div>
+    <p *ngIf="answer.trueFalseAnswer != null"> <strong>True False Answer: </strong> {{answer.trueFalseAnswer}} </p>
+    <p *ngIf="answer.fillBlanksAnswers != null"> <strong>Fill Blanks Answer Value 1</strong> is: {{answer.fillBlanksAnswers.val1}}
       <br/>
-      <strong>Fill Blanks Answer for Variable 2</strong> is: {{answer.fillBlanksAnswers.variable2}}
+      <strong>Fill Blanks Answer Value 2</strong> is: {{answer.fillBlanksAnswers.val2}}
     </p>
+
   </li>
 </ul>

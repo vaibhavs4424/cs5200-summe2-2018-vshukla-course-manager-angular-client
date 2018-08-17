@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QuizServiceClient} from '../services/quiz.service.client';
 import {ActivatedRoute} from '@angular/router';
+import {UserServiceCleint} from '../services/user.service.client';
 
 @Component({
   selector: 'app-detail-submission-view',
@@ -13,9 +14,12 @@ export class DetailSubmissionViewComponent implements OnInit {
   submissionId;
   quiz ;
   submission;
+  user;
+  userId;
 
   constructor(
     private service: QuizServiceClient,
+    private userService: UserServiceCleint,
     private aRoute: ActivatedRoute) {
     aRoute.params.subscribe(params => this.setParams(params));
   }
@@ -35,6 +39,7 @@ export class DetailSubmissionViewComponent implements OnInit {
 
     this.service.loadDetailSubmission(quizId, submissionId).then((submission) => {
         this.submission = submission[0];
+        this.userService.findUserById(this.submission.student).then(user => this.user = user)
         console.log(this.submission);
       }
     );
