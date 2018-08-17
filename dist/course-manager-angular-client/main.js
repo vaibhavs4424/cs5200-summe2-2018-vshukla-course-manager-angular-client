@@ -657,7 +657,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Submission for the Quiz</h2>\n\n  <button class=\"btn btn-primary float-right\" routerLink=\"/home\">Home </button>\n\n<p><strong>Quiz id </strong> is: {{quiz.title}}</p>\n<p><strong>Student id </strong> is: {{submission.student}}</p>\n<p><strong>Submission Time</strong>  is: {{submission.submissionTime}}</p>\n\n<ul class=\"list-group\">\n  <li *ngFor=\"let answer of submission.answers\" class=\"list-group-item\">\n    <div *ngFor=\"let question of quiz.questions\"> <p *ngIf=\"answer._id == question._id\"><strong>Question </strong> is: {{question.title}}</p></div>\n    <p *ngIf=\"answer.essayAnswer != null\"> <strong>Essay Answer</strong> is:      {{answer.essayAnswer}} </p>\n    <p *ngIf=\"answer.multipleChoiceAnswer != null\"> <strong>MultipleChoiceAnswer</strong> is: {{answer.multipleChoiceAnswer}} </p>\n    <p *ngIf=\"answer.trueFalseAnswer != null\"> <strong>True False Answer</strong> is: {{answer.trueFalseAnswer}} </p>\n    <p *ngIf=\"answer.fillBlanksAnswers != null\"> <strong>Fill Blanks Answer for Variable 1</strong> is: {{answer.fillBlanksAnswers.variable1}}\n      <br/>\n      <strong>Fill Blanks Answer for Variable 2</strong> is: {{answer.fillBlanksAnswers.variable2}}\n    </p>\n  </li>\n</ul>\n"
+module.exports = "\n  <button class=\"btn btn-primary \" routerLink=\"/home\">Home </button>\n\n  <h2>Submission for the Quiz</h2>\n<p><strong>Student Username: </strong> {{user.username}}</p>\n<p><strong>Submission Time: </strong> {{submission.submissionTime}}</p>\n<p><strong>Quiz Title: </strong> {{quiz.title}}</p>\n\n<ul class=\"list-group\">\n  <li *ngFor=\"let answer of submission.answers\" class=\"list-group-item\">\n    <div *ngFor=\"let question of quiz.questions\"> <p *ngIf=\"answer._id == question._id\"><strong>Question: </strong> {{question.title}}</p> </div>\n    <p *ngIf=\"answer.essayAnswer != null\"> <strong>Essay Answer: </strong>  {{answer.essayAnswer}} </p>\n    <div *ngFor=\"let question of quiz.questions\"> <p *ngIf=\"answer.multipleChoiceAnswer != null && answer._id == question._id\"> <strong>Multiple Choice Answer: </strong> {{question.choices[answer.multipleChoiceAnswer].text}} </p></div>\n    <p *ngIf=\"answer.trueFalseAnswer != null\"> <strong>True False Answer: </strong> {{answer.trueFalseAnswer}} </p>\n    <p *ngIf=\"answer.fillBlanksAnswers != null\"> <strong>Fill Blanks Answer Value 1</strong> is: {{answer.fillBlanksAnswers.val1}}\n      <br/>\n      <strong>Fill Blanks Answer Value 2</strong> is: {{answer.fillBlanksAnswers.val2}}\n    </p>\n\n  </li>\n</ul>\n"
 
 /***/ }),
 
@@ -674,6 +674,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_quiz_service_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/quiz.service.client */ "./src/app/services/quiz.service.client.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user.service.client */ "./src/app/services/user.service.client.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -686,10 +687,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DetailSubmissionViewComponent = /** @class */ (function () {
-    function DetailSubmissionViewComponent(service, aRoute) {
+    function DetailSubmissionViewComponent(service, userService, aRoute) {
         var _this = this;
         this.service = service;
+        this.userService = userService;
         this.aRoute = aRoute;
         aRoute.params.subscribe(function (params) { return _this.setParams(params); });
     }
@@ -707,6 +710,7 @@ var DetailSubmissionViewComponent = /** @class */ (function () {
         var _this = this;
         this.service.loadDetailSubmission(quizId, submissionId).then(function (submission) {
             _this.submission = submission[0];
+            _this.userService.findUserById(_this.submission.student).then(function (user) { return _this.user = user; });
             console.log(_this.submission);
         });
     };
@@ -719,6 +723,7 @@ var DetailSubmissionViewComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./detail-submission-view.component.css */ "./src/app/detail-submission-view/detail-submission-view.component.css")]
         }),
         __metadata("design:paramtypes", [_services_quiz_service_client__WEBPACK_IMPORTED_MODULE_1__["QuizServiceClient"],
+            _services_user_service_client__WEBPACK_IMPORTED_MODULE_3__["UserServiceCleint"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], DetailSubmissionViewComponent);
     return DetailSubmissionViewComponent;
@@ -1280,7 +1285,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <h2>Submissions</h2>\n\n  <ul class=\"list-group\">\n    <li *ngFor=\"let submission of submissions\" class=\"list-group-item\">\n      <p><strong> Submission for Student with id: </strong> {{submission.student}}</p>\n      <p>Submission time: {{submission.submissionTime}}</p>\n\n      <a routerLink=\"/quiz/{{submission.quiz}}/submission/{{submission._id}}\" class=\"btn btn-success float-right\">View Submission</a>\n    </li>\n  </ul>\n\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <h2>Submissions</h2>\n\n  <ul class=\"list-group\">\n    <li *ngFor=\"let superSubmission of superSubmissions\" class=\"list-group-item\">\n     <div class=\"row\">\n       <div class=\"col\"><p><strong> Submission for Student: </strong> {{superSubmission.user.username}}</p>\n         <p><strong>Submission Time:</strong> {{superSubmission.submission.submissionTime}}</p>\n       </div>\n      <a routerLink=\"/quiz/{{superSubmission.submission.quiz}}/submission/{{superSubmission.submission._id}}\" class=\"btn btn-success float-right\">View Submission</a>\n     </div> </li>\n  </ul>\n\n</div>\n"
 
 /***/ }),
 
@@ -1297,6 +1302,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_quiz_service_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/quiz.service.client */ "./src/app/services/quiz.service.client.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user.service.client */ "./src/app/services/user.service.client.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1309,13 +1315,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var QuizSubmissionComponent = /** @class */ (function () {
-    function QuizSubmissionComponent(service, aRoute) {
+    function QuizSubmissionComponent(service, userService, aRoute) {
         var _this = this;
         this.service = service;
+        this.userService = userService;
         this.aRoute = aRoute;
         this.quizId = '';
         this.submissions = [];
+        this.superSubmissions = [];
         this.aRoute.params.subscribe(function (params) {
             return _this.loadSubmissions(params['quizId']);
         });
@@ -1324,7 +1333,24 @@ var QuizSubmissionComponent = /** @class */ (function () {
         var _this = this;
         this.quizId = quizId;
         this.service.loadSubmissions(this.quizId)
-            .then(function (submissions) { return _this.submissions = submissions; });
+            .then(function (submissions) {
+            _this.submissions = submissions;
+            _this.loadSuperSubmission();
+        });
+    };
+    QuizSubmissionComponent.prototype.loadSuperSubmission = function () {
+        var _this = this;
+        this.submissions.forEach(function (submission, index) {
+            _this.userService.findUserById(submission.student).then(function (user) {
+                var superSubmission = {
+                    user: '',
+                    submission: ''
+                };
+                superSubmission.user = user;
+                superSubmission.submission = submission;
+                _this.superSubmissions.push(superSubmission);
+            });
+        });
     };
     QuizSubmissionComponent.prototype.ngOnInit = function () {
     };
@@ -1335,6 +1361,7 @@ var QuizSubmissionComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./quiz-submission.component.css */ "./src/app/quiz-submission/quiz-submission.component.css")]
         }),
         __metadata("design:paramtypes", [_services_quiz_service_client__WEBPACK_IMPORTED_MODULE_1__["QuizServiceClient"],
+            _services_user_service_client__WEBPACK_IMPORTED_MODULE_3__["UserServiceCleint"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], QuizSubmissionComponent);
     return QuizSubmissionComponent;
