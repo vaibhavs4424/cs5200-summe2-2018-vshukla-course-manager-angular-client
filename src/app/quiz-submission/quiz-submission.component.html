@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <h2>Submissions</h2>
+
+  <ul class="list-group">
+    <li *ngFor="let submission of submissions" class="list-group-item">
+      <p><strong> Submission for Student with id: </strong> {{submission.student}}</p>
+      <p>Submission time: {{submission.submissionTime}}</p>
+
+      <a routerLink="/quiz/{{submission.quiz}}/submission/{{submission._id}}" class="btn btn-success float-right">View Submission</a>
+    </li>
+  </ul>
+
+</div>
