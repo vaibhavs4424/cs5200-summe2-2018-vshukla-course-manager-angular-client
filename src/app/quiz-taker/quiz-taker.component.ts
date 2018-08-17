@@ -17,7 +17,7 @@ export class QuizTakerComponent implements OnInit {
   }
 
   quizId = '';
-  quiz = {};
+  quiz ;
   submission = {
     answers: []
   };
