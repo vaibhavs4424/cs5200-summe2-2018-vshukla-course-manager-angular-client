@@ -16,6 +16,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { SectionComponent } from './section/section.component';
 import { CourseEnrollmentComponent } from './course-enrollment/course-enrollment.component';
 import { CourseViewerComponent } from './course-viewer/course-viewer.component';
+import { QuizListComponent } from './quiz-list/quiz-list.component';
+import { QuizTakerComponent } from './quiz-taker/quiz-taker.component';
+import { EssayQuestionComponent } from './essay-question/essay-question.component';
+import { FillBlanksQuestionComponent } from './fill-blanks-question/fill-blanks-question.component';
+import { MultipleChoiceQuestionComponent } from './multiple-choice-question/multiple-choice-question.component';
+import { TrueFalseQuestionComponent } from './true-false-question/true-false-question.component';
+import {QuizServiceClient} from './services/quiz.service.client';
+import { QuizSubmissionComponent } from './quiz-submission/quiz-submission.component';
+import { DetailSubmissionViewComponent } from './detail-submission-view/detail-submission-view.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +37,14 @@ import { CourseViewerComponent } from './course-viewer/course-viewer.component';
     SectionComponent,
     CourseEnrollmentComponent,
     CourseViewerComponent,
+    QuizListComponent,
+    QuizTakerComponent,
+    EssayQuestionComponent,
+    FillBlanksQuestionComponent,
+    MultipleChoiceQuestionComponent,
+    TrueFalseQuestionComponent,
+    QuizSubmissionComponent,
+    DetailSubmissionViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +56,7 @@ import { CourseViewerComponent } from './course-viewer/course-viewer.component';
     CourseServiceClient,
     WidgetServiceClient,
     UserServiceCleint,
+    QuizServiceClient,
     SectionServiceClient],
   bootstrap: [AppComponent]
 })

@@ -13,7 +13,15 @@ export class WhiteBoardComponent implements OnInit {
               private userService: UserServiceCleint) {
   }
 
+  isLoggedIn = false;
+
   ngOnInit() {
+    this.userService.profile().then(response => {
+      if (response != null) {
+        if (response.username !== 'unregistered')
+          this.isLoggedIn = true;
+      }
+    });
   }
 
   register() {
@@ -22,6 +30,10 @@ export class WhiteBoardComponent implements OnInit {
 
   login() {
     this.router.navigate(['login']);
+  }
+
+  quiz() {
+    this.router.navigate(['quizzes']);
   }
 
 }

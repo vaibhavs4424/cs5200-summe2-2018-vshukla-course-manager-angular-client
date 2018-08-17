@@ -18,6 +18,11 @@
     </button>
   </div>
 
-
-  <app-course-enrollment></app-course-enrollment>
+  <div *ngIf="isLoggedIn" class="form-group row">
+    <button (click)="quiz()"
+            class="btn btn-success btn-block">
+      Quizzes
+    </button>
+  </div>
+  <app-course-enrollment ></app-course-enrollment>
 </div>

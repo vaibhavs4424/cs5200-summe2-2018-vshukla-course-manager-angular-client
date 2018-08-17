@@ -6,6 +6,10 @@ import {LoginUserComponent} from './login-user/login-user.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SectionComponent} from './section/section.component';
 import {CourseViewerComponent} from './course-viewer/course-viewer.component';
+import {QuizListComponent} from './quiz-list/quiz-list.component';
+import {QuizTakerComponent} from './quiz-taker/quiz-taker.component';
+import {QuizSubmissionComponent} from './quiz-submission/quiz-submission.component';
+import {DetailSubmissionViewComponent} from './detail-submission-view/detail-submission-view.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,6 +25,10 @@ const appRoutes: Routes = [
   { path: 'course/:courseId/module/:moduleId', component: CourseViewerComponent },
   { path: 'course/:courseId/module/:moduleId/lesson/:lessonId', component: CourseViewerComponent },
   { path: 'course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId', component: CourseViewerComponent },
+  { path: 'quizzes', component: QuizListComponent },
+  { path: 'quiz/:quizId', component: QuizTakerComponent },
+  { path: 'quiz/:quizId/submission/:submissionId', component: DetailSubmissionViewComponent},
+  { path: 'quiz/:quizId/submissions', component: QuizSubmissionComponent},
   {path: '**', component: WhiteBoardComponent}
 ];
 export const Routing = RouterModule.forRoot(appRoutes);
