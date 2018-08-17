@@ -1,0 +1,20 @@
+<h2>Submission for the Quiz</h2>
+
+  <button class="btn btn-primary float-right" routerLink="/home">Home </button>
+
+<p><strong>Quiz id </strong> is: {{quiz.title}}</p>
+<p><strong>Student id </strong> is: {{submission.student}}</p>
+<p><strong>Submission Time</strong>  is: {{submission.submissionTime}}</p>
+
+<ul class="list-group">
+  <li *ngFor="let answer of submission.answers" class="list-group-item">
+    <div *ngFor="let question of quiz.questions"> <p *ngIf="answer._id == question._id"><strong>Question </strong> is: {{question.title}}</p></div>
+    <p *ngIf="answer.essayAnswer != null"> <strong>Essay Answer</strong> is:      {{answer.essayAnswer}} </p>
+    <p *ngIf="answer.multipleChoiceAnswer != null"> <strong>MultipleChoiceAnswer</strong> is: {{answer.multipleChoiceAnswer}} </p>
+    <p *ngIf="answer.trueFalseAnswer != null"> <strong>True False Answer</strong> is: {{answer.trueFalseAnswer}} </p>
+    <p *ngIf="answer.fillBlanksAnswers != null"> <strong>Fill Blanks Answer for Variable 1</strong> is: {{answer.fillBlanksAnswers.variable1}}
+      <br/>
+      <strong>Fill Blanks Answer for Variable 2</strong> is: {{answer.fillBlanksAnswers.variable2}}
+    </p>
+  </li>
+</ul>
