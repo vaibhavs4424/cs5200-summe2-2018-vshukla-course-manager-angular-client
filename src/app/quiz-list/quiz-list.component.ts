@@ -14,7 +14,7 @@ export class QuizListComponent implements OnInit {
   }
 
   quizzes = [];
-  user = {};
+  user ;
 
   ngOnInit() {
     this.userService.profile().then(user => {

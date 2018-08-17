@@ -691,8 +691,6 @@ var DetailSubmissionViewComponent = /** @class */ (function () {
         var _this = this;
         this.service = service;
         this.aRoute = aRoute;
-        this.quiz = {};
-        this.submission = {};
         aRoute.params.subscribe(function (params) { return _this.setParams(params); });
     }
     DetailSubmissionViewComponent.prototype.setParams = function (params) {
@@ -1238,7 +1236,6 @@ var QuizListComponent = /** @class */ (function () {
         this.service = service;
         this.userService = userService;
         this.quizzes = [];
-        this.user = {};
     }
     QuizListComponent.prototype.ngOnInit = function () {
         var _this = this;

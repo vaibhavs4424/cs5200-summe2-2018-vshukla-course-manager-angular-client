@@ -11,8 +11,8 @@ export class DetailSubmissionViewComponent implements OnInit {
 
   quizId;
   submissionId;
-  quiz = {};
-  submission = {};
+  quiz ;
+  submission;
 
   constructor(
     private service: QuizServiceClient,
